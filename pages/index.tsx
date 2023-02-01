@@ -11,6 +11,7 @@ const defaultSectionsLength = {
 export default function Home() {
   const [password, setPassword] = useState("");
   const [sectionsLength, setSectionsLength] = useState(defaultSectionsLength);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const passwordSetData = {
     shortPass: () => setSectionsLength({ color: "red", length: 100 }),
     easyPass: () => setSectionsLength({ color: "red", length: 30 }),
@@ -18,6 +19,7 @@ export default function Home() {
     hardPass: () => setSectionsLength({ color: "green", length: 100 }),
     defaultPass: () => setSectionsLength(defaultSectionsLength),
   };
+
   return (
     <>
       <Head>
@@ -31,7 +33,7 @@ export default function Home() {
           <TextField
             className="w-full"
             label="Password"
-            defaultValue=""
+            value={password}
             variant="outlined"
             onChange={(event) => {
               setPassword(event.target.value);
@@ -40,6 +42,7 @@ export default function Home() {
                 passwordSetData,
               });
             }}
+            helperText={errorMessage}
           />
           <LinearProgress
             className="bg-gray-300"
