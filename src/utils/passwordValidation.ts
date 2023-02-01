@@ -12,10 +12,14 @@ interface Props {
 }
 
 const passwordValidation = ({ password, passwordSetData }: Props) => {
-  const easyPassReg = /(^[A-Za-z][A-Za-z]*$)|(^[0-9][0-9]*$)|(^[\W|_][\W|_]*$)/;
-  const mediumPassReg = /(^[A-Za-z\W|_]*$)|(^[A-Za-z0-9]*$)|(^[0-9\W|_]*$)/;
+  const easyPassReg =
+    /(^[\p{Letter}][\p{Letter}]*$)|(^[0-9][0-9]*$)|(^[\W|_][\W|_]*$)/u;
+  const mediumPassReg =
+    /(^[\p{Letter}\W|_]*$)|(^[\p{Letter}0-9]*$)|(^[0-9\W|_]*$)/u;
   const hardPassReg =
-    /(^[A-Za-z][A-Za-z0-9\W|_]*$)|(^[0-9][A-Za-z0-9\W|_]*$)|(^[\W|_][A-Za-z0-9\W|_]*$)/;
+    /(^[\p{Letter}][\p{Letter}0-9\W|_]*$)|(^[0-9][\p{Letter}0-9\W|_]*$)|(^[\W|_][\p{Letter}0-9\W|_]*$)/u;
+
+  console.log("test", /\p{Letter}/u.test(password));
 
   if (password.length > 0 && password.length < 8) {
     passwordSetData.shortPass();
@@ -32,6 +36,7 @@ const passwordValidation = ({ password, passwordSetData }: Props) => {
   }
 
   if (hardPassReg.test(password) && password.length > 0) {
+    console.log("hardPassReg", hardPassReg.test(password));
     passwordSetData.hardPass();
     return;
   }
