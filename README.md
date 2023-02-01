@@ -2,7 +2,7 @@
 
 Install all dependencies:
 ```bash
-yarn install
+yarn
 ```
 
 ## Start page
