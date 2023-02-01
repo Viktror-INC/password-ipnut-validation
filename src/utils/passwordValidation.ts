@@ -19,8 +19,6 @@ const passwordValidation = ({ password, passwordSetData }: Props) => {
   const hardPassReg =
     /(^[\p{Letter}][\p{Letter}0-9\W|_]*$)|(^[0-9][\p{Letter}0-9\W|_]*$)|(^[\W|_][\p{Letter}0-9\W|_]*$)/u;
 
-  console.log("test", /\p{Letter}/u.test(password));
-
   if (password.length > 0 && password.length < 8) {
     passwordSetData.shortPass();
     return;
@@ -36,7 +34,6 @@ const passwordValidation = ({ password, passwordSetData }: Props) => {
   }
 
   if (hardPassReg.test(password) && password.length > 0) {
-    console.log("hardPassReg", hardPassReg.test(password));
     passwordSetData.hardPass();
     return;
   }
