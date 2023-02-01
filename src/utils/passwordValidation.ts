@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   password: string;
   passwordSetData: {
@@ -12,10 +10,15 @@ interface Props {
 }
 
 const passwordValidation = ({ password, passwordSetData }: Props) => {
+  // Only letters/digits/symbols
   const easyPassReg =
     /(^[\p{Letter}][\p{Letter}]*$)|(^[0-9][0-9]*$)|(^[\W|_][\W|_]*$)/u;
+
+  // letters-symbols letters-digits digits-symbol
   const mediumPassReg =
     /(^[\p{Letter}\W|_]*$)|(^[\p{Letter}0-9]*$)|(^[0-9\W|_]*$)/u;
+
+  // letters-symbols-digits
   const hardPassReg =
     /(^[\p{Letter}][\p{Letter}0-9\W|_]*$)|(^[0-9][\p{Letter}0-9\W|_]*$)|(^[\W|_][\p{Letter}0-9\W|_]*$)/u;
 

@@ -1,3 +1,10 @@
+## About Project
+### This project use:
+- MUI
+- Typescript
+- EsLint
+- Tailwind
+
 ## Getting Started
 
 Install all dependencies:
